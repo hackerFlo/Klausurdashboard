@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Klausurdashboard – LMU Prüfungsaufsicht</title>
+    <meta
+      name="description"
+      content="Browserbasiertes Prüfungsaufsichts-Tool für Klausuren an der LMU München. Eine einzige HTML-Datei, kein Server, kein Internet nötig."
+    />
+    <style>
+      :root {
+        --primary: #00884a;
+        --secondary: #006b3a;
+        --tertiary: #c0525f;
+        --neutral: #727972;
+        --bg: #f9fbf9;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family:
+          "Source Sans 3",
+          -apple-system,
+          BlinkMacSystemFont,
+          "Helvetica Neue",
+          Arial,
+          sans-serif;
+        color: #232323;
+        background: white;
+      }
+
+      header {
+        background: var(--primary);
+        color: white;
+        padding: 60px 20px 70px;
+        text-align: center;
+      }
+
+      header h1 {
+        margin: 0 0 12px;
+        font-size: 2.4rem;
+      }
+
+      header p {
+        margin: 0;
+        font-size: 1.15rem;
+        opacity: 0.92;
+        max-width: 640px;
+        margin: 0 auto;
+      }
+
+      main {
+        max-width: 960px;
+        margin: 0 auto;
+        padding: 0 20px 60px;
+      }
+
+      .download-card {
+        background: var(--bg);
+        border: 1px solid var(--primary);
+        border-radius: 8px;
+        padding: 32px;
+        text-align: center;
+        margin: -40px auto 50px;
+        max-width: 560px;
+        position: relative;
+      }
+
+      .download-card h2 {
+        color: var(--secondary);
+        margin-top: 0;
+      }
+
+      .download-btn {
+        display: inline-block;
+        background: var(--primary);
+        color: white;
+        font-weight: bold;
+        text-transform: uppercase;
+        text-decoration: none;
+        padding: 16px 36px;
+        border-radius: 4px;
+        margin-top: 12px;
+        transition: background 0.15s ease;
+      }
+
+      .download-btn:hover {
+        background: var(--secondary);
+      }
+
+      .download-hint {
+        margin-top: 14px;
+        font-size: 0.85rem;
+        color: var(--neutral);
+      }
+
+      h2.section-title {
+        color: var(--primary);
+        font-size: 1.5rem;
+        border-bottom: 2px solid #ddd;
+        padding-bottom: 10px;
+      }
+
+      .features {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 24px;
+        margin: 24px 0 50px;
+      }
+
+      .feature {
+        border: 1px solid #e0e0e0;
+        border-radius: 6px;
+        padding: 20px;
+      }
+
+      .feature h3 {
+        margin: 0 0 8px;
+        color: var(--secondary);
+        font-size: 1.05rem;
+      }
+
+      .feature p {
+        margin: 0;
+        font-size: 0.92rem;
+        color: #444;
+      }
+
+      .steps {
+        margin: 0 0 50px;
+        padding-left: 0;
+        counter-reset: step;
+        list-style: none;
+      }
+
+      .steps li {
+        counter-increment: step;
+        position: relative;
+        padding: 0 0 18px 44px;
+        font-size: 0.95rem;
+      }
+
+      .steps li::before {
+        content: counter(step);
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        background: var(--primary);
+        color: white;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.9rem;
+      }
+
+      footer {
+        text-align: center;
+        padding: 24px;
+        font-size: 0.8rem;
+        color: var(--neutral);
+        border-top: 1px solid #eee;
+      }
+
+      footer a {
+        color: var(--secondary);
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Klausurdashboard</h1>
+      <p>
+        Browserbasiertes Prüfungsaufsichts-Tool für Klausuren an der LMU
+        München – läuft vollständig offline, ohne Server und ohne Internet.
+      </p>
+    </header>
+
+    <main>
+      <div class="download-card">
+        <h2>Jetzt herunterladen</h2>
+        <a class="download-btn" href="Klausurdashboard.html" download>
+          Klausurdashboard.html laden
+        </a>
+        <p class="download-hint">
+          Eine einzige HTML-Datei – einfach öffnen, kein Setup nötig.
+        </p>
+      </div>
+
+      <h2 class="section-title">Funktionen</h2>
+      <div class="features">
+        <div class="feature">
+          <h3>Countdown-Timer</h3>
+          <p>
+            Automatischer Formatwechsel: Std/Min → Min/Sek, wird unter 15
+            Minuten Restzeit rot.
+          </p>
+        </div>
+        <div class="feature">
+          <h3>Beameransicht</h3>
+          <p>
+            Zweites Browserfenster mit Echtzeit-Synchronisation über
+            BroadcastChannel / localStorage.
+          </p>
+        </div>
+        <div class="feature">
+          <h3>Pause &amp; Fortsetzen</h3>
+          <p>Timer jederzeit anhalten und nahtlos weiterlaufen lassen.</p>
+        </div>
+        <div class="feature">
+          <h3>WC-Status</h3>
+          <p>
+            Frei / Besetzt, automatisch gesperrt in den letzten 15 Minuten der
+            Klausur.
+          </p>
+        </div>
+        <div class="feature">
+          <h3>Abgabestapel</h3>
+          <p>Konfigurierbare Namensgruppen für eine geordnete Abgabe.</p>
+        </div>
+        <div class="feature">
+          <h3>Ankündigungen</h3>
+          <p>Freie Textankündigungen, die live auf dem Beamer erscheinen.</p>
+        </div>
+        <div class="feature">
+          <h3>Live-Vorschau</h3>
+          <p>Die Beameransicht wird direkt im Dashboard mitverfolgt.</p>
+        </div>
+        <div class="feature">
+          <h3>Screen Wake Lock</h3>
+          <p>
+            Der Bildschirm bleibt während der gesamten Prüfung aktiv und
+            schaltet sich nicht ab.
+          </p>
+        </div>
+      </div>
+
+      <h2 class="section-title">So funktioniert's</h2>
+      <ol class="steps">
+        <li>
+          <code>Klausurdashboard.html</code> herunterladen und im Browser
+          öffnen (Chrome/Edge empfohlen).
+        </li>
+        <li>Prüfungsname und Dauer eingeben.</li>
+        <li>
+          „Beameransicht öffnen" klicken → neues Fenster auf den
+          Beamer/zweiten Bildschirm ziehen und dort Vollbild (F11) aktivieren.
+        </li>
+        <li>Prüfung starten.</li>
+      </ol>
+    </main>
+
+    <footer>
+      <a href="https://github.com/hackerFlo/Klausurdashboard">Quellcode auf GitHub</a>
+    </footer>
+  </body>
+</html>

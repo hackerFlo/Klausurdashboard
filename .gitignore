@@ -1,0 +1,27 @@
+node_modules/
+build/
+dist/
+coverage/
+.DS_Store
+*.log
+
+# Environment files — never commit secrets
+.env*
+.env.example
+
+# Dev tooling
+DEV_COMMAND.txt
+
+# AI Studio scaffolding — never publish
+metadata.json
+assets/.aistudio/
+.aistudio/
+
+# Local editor/agent state — never publish
+.claude/
+
+# Screenshot source files (inlined into docs/index.html as data-URIs)
+screenshots/
+
+# Internal design reference (not for distribution)
+design guide.png
