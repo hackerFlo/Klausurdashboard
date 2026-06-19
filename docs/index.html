@@ -99,6 +99,23 @@
         color: var(--neutral);
       }
 
+      .header-download-btn {
+        display: inline-block;
+        background: white;
+        color: var(--primary);
+        font-weight: bold;
+        text-transform: uppercase;
+        text-decoration: none;
+        padding: 14px 32px;
+        border-radius: 4px;
+        margin-top: 24px;
+        transition: background 0.15s ease;
+      }
+
+      .header-download-btn:hover {
+        background: var(--bg);
+      }
+
       h2.section-title {
         color: var(--primary);
         font-size: 1.5rem;
@@ -182,6 +199,9 @@
         Browserbasiertes Prüfungsaufsichts-Tool für Klausuren an der LMU
         München – läuft vollständig offline, ohne Server und ohne Internet.
       </p>
+      <a class="header-download-btn" href="Klausurdashboard.html" download>
+        Jetzt herunterladen
+      </a>
     </header>
 
     <main>
