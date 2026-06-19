@@ -14,31 +14,6 @@ Browserbasiertes Prüfungsaufsichts-Tool für Klausuren an der LMU München.
 - Screen Wake Lock – Bildschirm bleibt während der Prüfung aktiv
 - Vollständig offline – kein Server, kein Internet nötig
 
-## Technischer Stack
-
-- [React 19](https://react.dev/) + [TypeScript](https://www.typescriptlang.org/)
-- [Vite 6](https://vitejs.dev/) mit [vite-plugin-singlefile](https://github.com/richardtallent/vite-plugin-singlefile) → ein einziges `index.html`
-- [Tailwind CSS v4](https://tailwindcss.com/)
-- Icons: [lucide-react](https://lucide.dev/)
-- Animationen: [Motion](https://motion.dev/)
-
-## Entwicklung
-
-```bash
-npm install
-npm run dev          # Entwicklungsserver auf http://localhost:3000
-```
-
-Beameransicht im Entwicklungsmodus: `http://localhost:3000/?beamer`
-
-## Build
-
-```bash
-npm run build        # Erzeugt dist/index.html (vollständig selbstständige Datei)
-```
-
-Das Build-Ergebnis ist eine einzige HTML-Datei (`dist/index.html`) mit allen JS-, CSS- und Bild-Assets inline.
-
 ## Nutzung (fertig gebaute Datei)
 
 1. `dist/index.html` im Browser öffnen (Chrome/Edge empfohlen).
