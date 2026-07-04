@@ -161,6 +161,14 @@ input:focus {
   color: white;
 }
 
+/* BeamerView is shown at wildly different physical sizes (preview iframe scaled via
+   transform, fullscreen on the external display) — use vw units like the rest of its
+   layout (.exam-title, .timer-val, etc.) instead of fixed rem/px so the footer scales too. */
+.beamer-footer {
+  padding: 1vw 1.5vw;
+  font-size: 0.7vw;
+}
+
 .divider {
   border: none;
   border-top: 1px solid #ddd;

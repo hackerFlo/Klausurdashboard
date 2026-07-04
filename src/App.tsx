@@ -242,6 +242,10 @@ function AdminView() {
 
   // Initialize and load from local storage
   useEffect(() => {
+    // Re-stamp the Beamer footer timer on every fresh app session, otherwise the
+    // timestamp from a previous run is already >2.5min old and the footer hides instantly.
+    localStorage.setItem("beamer_footer_shown_at", String(Date.now()));
+
     const rawData = localStorage.getItem("examData");
     if (rawData) {
       try {
@@ -522,10 +526,11 @@ function AdminView() {
   const announcementUnchanged = announcementDraft === announcement;
 
   return (
-    <div className="min-h-screen bg-white">
-      <BannerBox text={lehrstuhlText} />
+    <div className="min-h-screen bg-white flex flex-col">
+      <div className="flex-1">
+        <BannerBox text={lehrstuhlText} />
 
-      <div className="dashboard-container" id="admin-dashboard-layout">
+        <div className="dashboard-container" id="admin-dashboard-layout">
         {/* Left Side: Controls */}
         <div className="controls">
           {examActive && (
@@ -541,6 +546,19 @@ function AdminView() {
           )}
 
           <h2 style={{ margin: 0, marginBottom: "20px" }}>Prüfungseinstellungen</h2>
+
+          <div className="input-group" style={{ marginBottom: "20px" }}>
+            <label htmlFor="lehrstuhlText">Lehrstuhlname</label>
+            <input
+              type="text"
+              id="lehrstuhlText"
+              value={lehrstuhlText}
+              onChange={(e) => {
+                setLehrstuhlText(e.target.value);
+                syncToLocalStorage({ lehrstuhlText: e.target.value });
+              }}
+            />
+          </div>
 
           <div style={{ display: "flex", gap: "10px", opacity: examActive ? 0.5 : 1, transition: "opacity 0.2s" }}>
             <div className="input-group" style={{ flex: 3 }}>
@@ -583,19 +601,6 @@ function AdminView() {
                 }}
               />
             </div>
-          </div>
-
-          <div className="input-group" style={{ marginBottom: "20px" }}>
-            <label htmlFor="lehrstuhlText">Lehrstuhlname</label>
-            <input
-              type="text"
-              id="lehrstuhlText"
-              value={lehrstuhlText}
-              onChange={(e) => {
-                setLehrstuhlText(e.target.value);
-                syncToLocalStorage({ lehrstuhlText: e.target.value });
-              }}
-            />
           </div>
 
           <label style={{ display: "block", fontWeight: "bold", fontSize: "0.85rem", textTransform: "uppercase", marginBottom: "8px", marginTop: "8px", color: "#333" }}>Abgabeeinstellungen (angeordnet aus Sicht der Prüfungsteilnehmer)</label>
@@ -929,6 +934,7 @@ function AdminView() {
           </div>
         </div>
       </div>
+      </div>
 
       {isEndModalOpen && (
         <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50 p-4">
@@ -1029,7 +1035,18 @@ function AdminView() {
         </div>
       )}
       <footer className="dashboard-footer">
-        Programmiert von Florian Zeller 💻 am Lehrstuhl für Öffentliches Recht und Staatsphilosophie
+        Programmiert von{" "}
+        <a
+          href="https://www.linkedin.com/in/zeller-florian/"
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{ color: "inherit", textDecoration: "inherit", font: "inherit" }}
+        >
+          Florian Zeller
+        </a>{" "}
+        💻 am Lehrstuhl für Öffentliches Recht und Staatsphilosophie
+        {" · v"}
+        {__APP_VERSION__}
       </footer>
     </div>
   );
@@ -1062,6 +1079,30 @@ function BeamerView() {
   const [announcement, setAnnouncement] = useState("");
   const [announcementFontSize, setAnnouncementFontSize] = useState("1.8vw");
   const [lehrstuhlText, setLehrstuhlText] = useState(LEHRSTUHL_DEFAULT);
+
+  const [footerTimedOut, setFooterTimedOut] = useState(false);
+
+  // Anchored in localStorage (not component-mount time) so the preview iframe and the
+  // real Beamer popup window — which mount at different times — hide the footer in sync.
+  useEffect(() => {
+    const FOOTER_VISIBLE_MS = 2.5 * 60 * 1000;
+    const STORAGE_KEY = "beamer_footer_shown_at";
+
+    let shownAt = parseInt(localStorage.getItem(STORAGE_KEY) || "", 10);
+    if (!shownAt || Number.isNaN(shownAt)) {
+      shownAt = Date.now();
+      localStorage.setItem(STORAGE_KEY, String(shownAt));
+    }
+
+    const remaining = FOOTER_VISIBLE_MS - (Date.now() - shownAt);
+    if (remaining <= 0) {
+      setFooterTimedOut(true);
+      return;
+    }
+
+    const timer = setTimeout(() => setFooterTimedOut(true), remaining);
+    return () => clearTimeout(timer);
+  }, []);
 
   useEffect(() => {
     if (!announcement) {
@@ -1379,15 +1420,24 @@ function BeamerView() {
       )}
 
       <AnimatePresence mode="popLayout">
-        {!examActive && (
+        {!examActive && !footerTimedOut && (
           <motion.footer
-            className="dashboard-footer"
+            className="dashboard-footer beamer-footer"
             initial={{ y: 0, opacity: 1 }}
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: "100%", opacity: 0 }}
             transition={{ duration: 0.5, ease: "easeInOut" }}
           >
-            Programmiert von Florian Zeller 💻 am Lehrstuhl für Öffentliches Recht und Staatsphilosophie
+            Programmiert von{" "}
+            <a
+              href="https://www.linkedin.com/in/zeller-florian/"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ color: "inherit", textDecoration: "inherit", font: "inherit" }}
+            >
+              Florian Zeller
+            </a>{" "}
+            💻 am Lehrstuhl für Öffentliches Recht und Staatsphilosophie
           </motion.footer>
         )}
       </AnimatePresence>
