@@ -1,14 +1,69 @@
 {
   "name": "lmu-klausurdashboard",
   "private": true,
-  "version": "1.0.0",
+  "version": "0.1.0",
   "type": "module",
+  "main": "electron/main.cjs",
   "scripts": {
     "dev": "vite --port=3000 --host=0.0.0.0",
     "build": "vite build",
     "preview": "vite preview",
     "clean": "rm -rf dist",
-    "lint": "tsc --noEmit"
+    "lint": "tsc --noEmit",
+    "build:native": "swiftc -O electron/native/display-helper.swift -o electron/native/display-helper",
+    "electron:dev": "npm run build:native && concurrently \"npm run dev\" \"wait-on http://localhost:3000 && ELECTRON_DEV=true electron electron/main.cjs\"",
+    "electron:build": "npm run build:native && npm run build && electron-builder --mac --arm64 -c.directories.output=$HOME/.klausurdashboard-electron-dist && rm -f dist/*.dmg dist/*.zip dist/*.blockmap && cp \"$HOME/.klausurdashboard-electron-dist\"/*.dmg \"$HOME/.klausurdashboard-electron-dist\"/*.zip dist/ 2>/dev/null; rm -rf /Applications/Klausurdashboard.app && cp -R \"$HOME/.klausurdashboard-electron-dist/mac-arm64/Klausurdashboard.app\" /Applications/ && echo 'Installed to /Applications/Klausurdashboard.app'",
+    "electron:build:win": "npm run build && electron-builder --win --x64 -c.directories.output=$HOME/.klausurdashboard-electron-dist && rm -f dist/*.exe && cp \"$HOME/.klausurdashboard-electron-dist\"/*.exe dist/ && echo 'Windows installer in dist/'"
+  },
+  "build": {
+    "appId": "de.lmu.klausurdashboard",
+    "productName": "Klausurdashboard",
+    "files": [
+      "electron/main.cjs",
+      "electron/displayHelper.cjs",
+      "dist/**/*"
+    ],
+    "afterPack": "electron/afterPack.cjs",
+    "mac": {
+      "icon": "electron/icons/icon.icns",
+      "identity": null,
+      "category": "public.app-category.productivity",
+      "artifactName": "Klausurdashboard-macOS.${ext}",
+      "extraResources": [
+        {
+          "from": "electron/native/display-helper",
+          "to": "native/display-helper"
+        }
+      ],
+      "target": [
+        {
+          "target": "dmg",
+          "arch": ["arm64"]
+        },
+        {
+          "target": "zip",
+          "arch": ["arm64"]
+        }
+      ]
+    },
+    "win": {
+      "icon": "electron/icons/icon.ico",
+      "extraResources": [
+        {
+          "from": "electron/native/display-helper.ps1",
+          "to": "native/display-helper.ps1"
+        }
+      ],
+      "target": [
+        {
+          "target": "nsis",
+          "arch": ["x64"]
+        }
+      ]
+    },
+    "nsis": {
+      "artifactName": "Klausurdashboard-Setup-Windows.${ext}"
+    }
   },
   "dependencies": {
     "@fontsource/roboto": "^5.2.10",
@@ -24,11 +79,15 @@
   "devDependencies": {
     "@types/node": "^22.14.0",
     "autoprefixer": "^10.4.21",
+    "concurrently": "^10.0.3",
+    "electron": "^42.5.0",
+    "electron-builder": "^26.15.3",
     "esbuild": "^0.25.0",
     "tailwindcss": "^4.1.14",
     "tsx": "^4.21.0",
     "typescript": "~5.8.2",
     "vite": "^6.2.3",
-    "vite-plugin-singlefile": "^2.3.3"
+    "vite-plugin-singlefile": "^2.3.3",
+    "wait-on": "^9.0.10"
   }
 }

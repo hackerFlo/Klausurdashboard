@@ -19,9 +19,16 @@ assets/.aistudio/
 
 # Local editor/agent state — never publish
 .claude/
+CLAUDE.md
 
 # Screenshot source files (inlined into docs/index.html as data-URIs)
 screenshots/
 
 # Internal design reference (not for distribution)
 design guide.png
+
+# Compiled Swift helper binary (arch/machine-specific build artifact)
+electron/native/display-helper
+
+# Disposable intermediate iconset scaffolding (icon.icns is the committed build input)
+electron/icons/icon.iconset/
