@@ -7,25 +7,9 @@ coverage/
 
 # Environment files — never commit secrets
 .env*
-.env.example
-
-# Dev tooling
-DEV_COMMAND.txt
-
-# AI Studio scaffolding — never publish
-metadata.json
-assets/.aistudio/
-.aistudio/
-
-# Local editor/agent state — never publish
-.claude/
-CLAUDE.md
 
 # Screenshot source files (inlined into docs/index.html as data-URIs)
 screenshots/
-
-# Internal design reference (not for distribution)
-design guide.png
 
 # Compiled Swift helper binary (arch/machine-specific build artifact)
 electron/native/display-helper
