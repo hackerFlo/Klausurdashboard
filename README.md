@@ -1,6 +1,10 @@
 # Klausurdashboard
 
-Browserbasiertes Prüfungsaufsichts-Tool für Klausuren an der LMU München.
+Prüfungsaufsichts-Tool für Klausuren an der LMU München – als Browser-Version (eine einzige HTML-Datei), macOS-App und Windows-App.
+
+## Download
+
+Alle drei Versionen gibt es auf der [Download-Seite](https://hackerflo.github.io/Klausurdashboard/) oder direkt bei den [Releases](https://github.com/hackerFlo/Klausurdashboard/releases). Was sich mit jeder Version geändert hat, steht in der [Versionshistorie](CHANGELOG.md).
 
 ## Funktionen
 
@@ -14,9 +18,9 @@ Browserbasiertes Prüfungsaufsichts-Tool für Klausuren an der LMU München.
 - Screen Wake Lock – Bildschirm bleibt während der Prüfung aktiv
 - Vollständig offline – kein Server, kein Internet nötig
 
-## Nutzung (fertig gebaute Datei)
+## Nutzung
 
-1. `dist/index.html` im Browser öffnen (Chrome/Edge empfohlen).
+1. App installieren oder die HTML-Datei im Browser öffnen (Chrome/Edge empfohlen).
 2. Prüfungsname und Dauer eingeben.
-3. „Beameransicht öffnen" klicken → neues Fenster auf den Beamer/zweiten Bildschirm ziehen und dort Vollbild (F11) aktivieren.
+3. „Beameransicht öffnen" klicken → neues Fenster auf den Beamer/zweiten Bildschirm ziehen und dort Vollbild (F11) aktivieren (die Desktop-Apps erledigen das automatisch).
 4. Prüfung starten.
