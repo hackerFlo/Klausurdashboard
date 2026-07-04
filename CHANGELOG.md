@@ -22,6 +22,8 @@ Offizieller Launch. Das Klausurdashboard ist ab jetzt in drei gleichwertigen Ver
 - Freie Ankündigungen, die live auf dem Beamer erscheinen
 - Live-Vorschau der Beameransicht direkt im Dashboard
 - Screen Wake Lock – der Bildschirm bleibt während der gesamten Prüfung aktiv
+- Update-Hinweis: Vor Prüfungsbeginn prüft die App (nur wenn online), ob eine neuere Version verfügbar ist, und zeigt einen dezenten Hinweis mit Download-Link. Die App bleibt auch ohne Update und ohne Internetverbindung voll funktionsfähig.
+- Eigenes App-Icon (Prüfungsbogen mit Uhr) für macOS, Windows und als Browser-Favicon
 
 ## [0.1.0] – 2026-07-04
 

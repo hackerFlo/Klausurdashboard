@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="1024" height="1024">
+  <defs>
+    <linearGradient id="bgE" x1="0" y1="0" x2="0.25" y2="1">
+      <stop offset="0" stop-color="#36C7AB"></stop>
+      <stop offset="1" stop-color="#0A655F"></stop>
+    </linearGradient>
+    <linearGradient id="glassW" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff"></stop>
+      <stop offset="1" stop-color="#DAE4EC"></stop>
+    </linearGradient>
+    <linearGradient id="sheen" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.44"></stop>
+      <stop offset="0.2" stop-color="#ffffff" stop-opacity="0.06"></stop>
+      <stop offset="0.62" stop-color="#000000" stop-opacity="0"></stop>
+      <stop offset="1" stop-color="#000000" stop-opacity="0.2"></stop>
+    </linearGradient>
+    <linearGradient id="rimGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.72"></stop>
+      <stop offset="0.16" stop-color="#ffffff" stop-opacity="0.1"></stop>
+      <stop offset="0.7" stop-color="#000000" stop-opacity="0"></stop>
+      <stop offset="1" stop-color="#000000" stop-opacity="0.26"></stop>
+    </linearGradient>
+  </defs>
+  <path d="M0 0H100V100H0Z" fill="url(#bgE)"></path>
+  <path d="M0 0H100V100H0Z" fill="url(#sheen)"></path>
+  <rect x="28" y="17" width="42" height="62" rx="6" fill="url(#glassW)"></rect>
+  <rect x="35" y="27" width="21" height="4" rx="2" fill="#0A655F" opacity="0.5"></rect>
+  <rect x="35" y="37" width="28" height="3" rx="1.5" fill="#9AA7A5"></rect>
+  <rect x="35" y="45" width="28" height="3" rx="1.5" fill="#9AA7A5"></rect>
+  <rect x="35" y="53" width="22" height="3" rx="1.5" fill="#9AA7A5"></rect>
+  <circle cx="64" cy="70" r="12.5" fill="#F0A23A"></circle>
+  <circle cx="64" cy="70" r="12.5" fill="none" stroke="#ffffff" stroke-opacity="0.5" stroke-width="1"></circle>
+  <line x1="64" y1="70" x2="64" y2="63" stroke="#ffffff" stroke-width="2" stroke-linecap="round"></line>
+  <line x1="64" y1="70" x2="69" y2="72" stroke="#ffffff" stroke-width="2" stroke-linecap="round"></line>
+  <circle cx="64" cy="70" r="1.6" fill="#ffffff"></circle>
+  <path d="M0 0H100V100H0Z" fill="none" stroke="url(#rimGrad)" stroke-width="1.6"></path>
+</svg>
