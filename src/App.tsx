@@ -8,7 +8,6 @@ import { motion, AnimatePresence } from "motion/react";
 import { X, Send, Play, Square, Pause, Layers } from "lucide-react";
 import bannerWhiteImg from "./assets/banner-white.png";
 import wcIconImg from "./assets/wc-icon.png";
-import { downloadUrlForPlatform, fetchLatestVersion, isNewerVersion } from "./updateCheck";
 
 const LEHRSTUHL_DEFAULT = "Lehrstuhl für Öffentliches Recht und Staatsphilosophie";
 
@@ -237,21 +236,6 @@ function AdminView() {
       beamerWindowsRef.current = beamerWindowsRef.current.filter((win) => !win.closed);
     }, 1000);
     return () => clearInterval(interval);
-  }, []);
-
-  // Best-effort update notice: checked once per app start; offline the fetch
-  // resolves to null and nothing renders — the app never depends on it.
-  const [updateVersion, setUpdateVersion] = useState<string | null>(null);
-  useEffect(() => {
-    let cancelled = false;
-    fetchLatestVersion().then((latest) => {
-      if (!cancelled && latest && isNewerVersion(latest, __APP_VERSION__)) {
-        setUpdateVersion(latest);
-      }
-    });
-    return () => {
-      cancelled = true;
-    };
   }, []);
 
   const [isLoaded, setIsLoaded] = useState(false);
@@ -558,21 +542,6 @@ function AdminView() {
           {!examActive && (
             <div className="bg-[#e8f4fd] text-[#1a5276] p-3 mb-4 rounded border border-[#aed6f1]" style={{ fontSize: "0.9rem", lineHeight: "1.5" }}>
               ℹ️ Hier können die Prüfungseinstellungen vor Prüfungsbeginn vorgenommen werden. Beim Klicken auf „Beameransicht öffnen" öffnet sich ein zweites Browser-Fenster, das auf dem Beamer als erweiterter Bildschirm platziert und im Vollbildmodus während der Prüfung angezeigt werden kann. Über die Prüfungskontrollen können die angezeigten Informationen in Echtzeit angepasst werden.
-            </div>
-          )}
-
-          {!examActive && updateVersion && (
-            <div id="updateNotice" className="bg-[#e8f4fd] text-[#1a5276] p-3 mb-4 rounded border border-[#aed6f1]" style={{ fontSize: "0.9rem", lineHeight: "1.5" }}>
-              🔄 Version {updateVersion} ist verfügbar –{" "}
-              <a
-                href={downloadUrlForPlatform(navigator.userAgent)}
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{ color: "inherit", fontWeight: 600 }}
-              >
-                jetzt herunterladen
-              </a>
-              . Die App bleibt auch ohne Update voll funktionsfähig.
             </div>
           )}
 

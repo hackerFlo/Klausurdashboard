@@ -3,6 +3,16 @@
 Alle nennenswerten Änderungen am Klausurdashboard, neueste Version zuerst.
 Die Versionierung folgt [Semantic Versioning](https://semver.org/lang/de/): neue Funktionen erhöhen die zweite Zahl (1.1.0), Fehlerbehebungen die dritte (1.0.1), inkompatible Änderungen die erste (2.0.0).
 
+## [1.1.0] – 2026-07-08
+
+### Geändert
+
+- Das Klausurdashboard wird ab jetzt ausschließlich als Website angeboten: <https://hackerflo.github.io/Klausurdashboard/> – ohne Installation und immer in der neuesten Version. Internet wird nur zum Öffnen benötigt; einmal geladen, läuft die Software auch bei Internetausfall unterbrechungsfrei weiter.
+
+### Entfernt
+
+- Update-Hinweis samt Download-Links entfernt – die Website ist automatisch immer aktuell. Die bisherigen Downloads (HTML-Datei, macOS-App, Windows-App) werden nicht mehr angeboten; bereits installierte Apps funktionieren unverändert weiter, erhalten aber keine Updates mehr.
+
 ## [1.0.1] – 2026-07-08
 
 ### Geändert

@@ -1,7 +1,7 @@
 {
   "name": "lmu-klausurdashboard",
   "private": true,
-  "version": "1.0.1",
+  "version": "1.1.0",
   "type": "module",
   "main": "electron/main.cjs",
   "scripts": {
@@ -10,7 +10,7 @@
     "preview": "vite preview",
     "clean": "rm -rf dist",
     "lint": "tsc --noEmit",
-    "test": "vitest run",
+    "test": "vitest run --passWithNoTests",
     "build:native": "swiftc -O electron/native/display-helper.swift -o electron/native/display-helper",
     "electron:dev": "npm run build:native && concurrently \"npm run dev\" \"wait-on http://localhost:3000 && ELECTRON_DEV=true electron electron/main.cjs\"",
     "electron:build": "npm run build:native && npm run build && electron-builder --mac --arm64 -c.directories.output=$HOME/.klausurdashboard-electron-dist && rm -f dist/*.dmg dist/*.zip dist/*.blockmap && cp \"$HOME/.klausurdashboard-electron-dist\"/*.dmg \"$HOME/.klausurdashboard-electron-dist\"/*.zip dist/ 2>/dev/null; rm -rf /Applications/Klausurdashboard.app && cp -R \"$HOME/.klausurdashboard-electron-dist/mac-arm64/Klausurdashboard.app\" /Applications/ && echo 'Installed to /Applications/Klausurdashboard.app'",
