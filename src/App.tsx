@@ -1076,7 +1076,7 @@ function AdminView() {
           Florian Zeller
         </a>{" "}
         💻 am Lehrstuhl für Öffentliches Recht und Staatsphilosophie
-        {" · v"}
+        {" 🧰 v"}
         {__APP_VERSION__}
       </footer>
     </div>

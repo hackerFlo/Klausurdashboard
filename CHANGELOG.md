@@ -3,6 +3,12 @@
 Alle nennenswerten Änderungen am Klausurdashboard, neueste Version zuerst.
 Die Versionierung folgt [Semantic Versioning](https://semver.org/lang/de/): neue Funktionen erhöhen die zweite Zahl (1.1.0), Fehlerbehebungen die dritte (1.0.1), inkompatible Änderungen die erste (2.0.0).
 
+## [1.0.1] – 2026-07-08
+
+### Geändert
+
+- Fußzeile im Dashboard: Vor der Versionsnummer steht jetzt ein 🧰-Symbol statt eines Trennpunkts.
+
 ## [1.0.0] – 2026-07-04
 
 Offizieller Launch. Das Klausurdashboard ist ab jetzt in drei gleichwertigen Versionen verfügbar:
@@ -29,5 +35,6 @@ Offizieller Launch. Das Klausurdashboard ist ab jetzt in drei gleichwertigen Ver
 
 Erste Vorabversion als Desktop-App (macOS und Windows) zusätzlich zur Browser-Version, mit dem oben beschriebenen Funktionsumfang.
 
+[1.0.1]: https://github.com/hackerFlo/Klausurdashboard/releases/tag/v1.0.1
 [1.0.0]: https://github.com/hackerFlo/Klausurdashboard/releases/tag/v1.0.0
 [0.1.0]: https://github.com/hackerFlo/Klausurdashboard/releases/tag/v0.1.0
